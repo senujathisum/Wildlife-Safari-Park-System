@@ -6,6 +6,52 @@
 <h2>Habitat Zones & Animal Tracking</h2>
 <p>Monitor all zones and the health status of animals within them.</p>
 
+<style>
+    .map-container {
+        width: 100%;
+        max-width: 900px;
+        height: 500px;
+        margin: 2rem auto;
+        overflow: hidden;
+        border: 2px solid var(--vintage-border);
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        cursor: crosshair;
+        position: relative;
+        background-color: #fff;
+    }
+    .map-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform-origin: center center;
+        transition: transform 0.1s ease-out;
+        pointer-events: none; /* Let the container handle mouse events */
+    }
+    .map-container:hover img {
+        transform: scale(3); /* Significant zoom */
+    }
+</style>
+
+<div class="map-container" id="zoom-map">
+    <img src="https://www.yalasrilanka.lk/assets/img/map1.jpg" alt="Yala National Park Map">
+</div>
+
+<script>
+    const mapContainer = document.getElementById('zoom-map');
+    const mapImg = mapContainer.querySelector('img');
+
+    mapContainer.addEventListener('mousemove', (e) => {
+        const rect = mapContainer.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const xPercent = (x / rect.width) * 100;
+        const yPercent = (y / rect.height) * 100;
+
+        mapImg.style.transformOrigin = `${xPercent}% ${yPercent}%`;
+    });
+</script>
+
 {% for habitat in habitats %}
 <div style="margin-bottom: 3rem;">
     <h3 style="color: var(--vintage-heading); font-family: 'Georgia', serif; border-bottom: 2px solid var(--vintage-border); padding-bottom: 5px;">{{ habitat.name }}</h3>
