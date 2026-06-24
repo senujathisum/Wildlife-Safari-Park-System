@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}Animal Tracking - The Wildlife Safari Park{% endblock %}
+
+{% block content %}
+<h2>Habitat Zones & Animal Tracking</h2>
+<p>Monitor all zones and the health status of animals within them.</p>
+
+{% for habitat in habitats %}
+<div style="margin-bottom: 3rem;">
+    <h3 style="color: var(--vintage-heading); font-family: 'Georgia', serif; border-bottom: 2px solid var(--vintage-border); padding-bottom: 5px;">{{ habitat.name }}</h3>
+    <p style="font-style: italic; color: var(--vintage-border);">{{ habitat.description }}</p>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Species</th>
+                <th>Name / ID</th>
+                <th>Health Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for animal in habitat.animals.all %}
+            <tr>
+                <td>{{ animal.species }}</td>
+                <td>{{ animal.name|default:"Un-named" }}</td>
+                <td>
+                    {% if animal.health_status == 'Healthy' %}
+                        <span style="color: green; font-weight: bold;">{{ animal.health_status }}</span>
+                    {% else %}
+                        <span style="color: #b22222; font-weight: bold;">{{ animal.health_status }}</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3"><em>No animals tracked in this zone yet.</em></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% empty %}
+    <p><em>No habitats recorded yet.</em></p>
+{% endfor %}
+{% endblock %}

@@ -42,3 +42,10 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"Booking for {self.guest_name} on {self.booking_date}"
+
+class GalleryImage(models.Model):
+    title = models.CharField(max_length=100)
+    image_url = models.URLField()
+
+    def __str__(self):
+        return self.title

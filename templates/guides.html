@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Tour Guides - The Wildlife Safari Park{% endblock %}
+
+{% block content %}
+<h2>Tour Guides</h2>
+<p>Our experienced guides available for upcoming safaris.</p>
+
+<div class="section-grid">
+    {% for guide in guides %}
+    <div class="card">
+        <h2>{{ guide.first_name }} {{ guide.last_name }}</h2>
+        <p><strong>Status:</strong> {{ guide.status }}</p>
+        <p><strong>Shift:</strong> {{ guide.shift_start|time:"H:i" }} - {{ guide.shift_end|time:"H:i" }}</p>
+        <p><strong>Assigned Zones:</strong> 
+            {% for zone in guide.assigned_zones.all %}
+                {{ zone.name }}{% if not forloop.last %}, {% endif %}
+            {% empty %}
+                None assigned
+            {% endfor %}
+        </p>
+        <button onclick="alert('Edit Guide form coming soon!')">Edit Guide</button>
+    </div>
+    {% empty %}
+    <p><em>No guides currently available.</em></p>
+    {% endfor %}
+</div>
+{% endblock %}

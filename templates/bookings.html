@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Bookings - The Wildlife Safari Park{% endblock %}
+
+{% block content %}
+<h2>Upcoming Safari Bookings</h2>
+<p>Manage the guest list, assigned guides, and tour slots.</p>
+
+{% if bookings %}
+    <table>
+        <thead>
+            <tr>
+                <th>Guest Name</th>
+                <th>Date</th>
+                <th>Time Slot</th>
+                <th>Vehicle</th>
+                <th>Tier</th>
+                <th>Assigned Guide</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.guest_name }}</td>
+                <td>{{ booking.booking_date }}</td>
+                <td>{{ booking.slot_time|time:"H:i" }}</td>
+                <td>{{ booking.vehicle_number }}</td>
+                <td>{{ booking.pricing_tier }}</td>
+                <td>{{ booking.assigned_guide|default:"Pending Assignment" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <p><em>No bookings currently scheduled.</em></p>
+{% endif %}
+
+<button onclick="alert('Add Booking form coming soon!')">Add New Booking</button>
+{% endblock %}
