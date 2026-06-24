@@ -49,3 +49,12 @@ class GalleryImage(models.Model):
 
     def __str__(self):
         return self.title
+
+class SiteSettings(models.Model):
+    logo_url = models.URLField(max_length=500, blank=True, null=True, help_text="URL for the site logo")
+
+    def __str__(self):
+        return "Site Settings"
+
+    class Meta:
+        verbose_name_plural = "Site Settings"

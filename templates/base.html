@@ -28,6 +28,16 @@
             padding: 2rem 1rem 1rem 1rem;
             border-bottom: 3px double var(--vintage-border);
             background-color: rgba(107, 142, 35, 0.1);
+            position: relative;
+        }
+        .site-logo {
+            position: absolute;
+            top: 50%;
+            left: 40px;
+            transform: translateY(-50%);
+            max-height: 140px;
+            max-width: 250px;
+            object-fit: contain;
         }
         h1 {
             font-family: 'Georgia', serif;
@@ -145,6 +155,9 @@
 </head>
 <body>
     <header>
+        {% if site_settings and site_settings.logo_url %}
+            <img src="{{ site_settings.logo_url }}" alt="Site Logo" class="site-logo">
+        {% endif %}
         <h1>The Wildlife Safari Park</h1>
         <p class="subtitle">Ranweli Wild Safari Park System</p>
         <nav>
