@@ -16,3 +16,17 @@ def guides_list(request):
 def habitats_list(request):
     habitats = HabitatZone.objects.all().prefetch_related('animals')
     return render(request, 'habitats.html', {'habitats': habitats})
+
+def contact_us(request):
+    from .models import ContactMessage
+    from django.contrib import messages
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        message = request.POST.get('message')
+        if name and email and message:
+            ContactMessage.objects.create(name=name, email=email, message=message)
+            messages.success(request, 'Your message has been sent successfully!')
+        else:
+            messages.error(request, 'Please fill out all fields.')
+    return render(request, 'contact.html')

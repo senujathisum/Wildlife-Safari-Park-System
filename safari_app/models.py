@@ -58,3 +58,12 @@ class SiteSettings(models.Model):
 
     class Meta:
         verbose_name_plural = "Site Settings"
+
+class ContactMessage(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    message = models.TextField()
+    submitted_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Message from {self.name}"

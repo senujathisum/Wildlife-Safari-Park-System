@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - Yala National Park{% endblock %}
+
+{% block content %}
+<h2 style="font-family: 'Georgia', serif; color: var(--vintage-heading); border-bottom: 2px solid var(--vintage-border); padding-bottom: 10px;">Stay Connected With Us</h2>
+
+<div style="display: flex; flex-wrap: wrap; gap: 2rem; margin-top: 2rem;">
+    <!-- Contact Info -->
+    <div style="flex: 1; min-width: 300px; padding: 2rem; background-color: #faf0e6; border: 1px dashed var(--vintage-border);">
+        <h3 style="color: var(--vintage-heading); margin-top: 0;">Official Contact Details</h3>
+        <p><strong>Department of Wildlife Conservation Head Office</strong></p>
+        <p>📍 <strong>Address:</strong><br> 811A, Jayanthipura, Battaramulla, Sri Lanka</p>
+        <p>📞 <strong>Phone:</strong><br> +94 11 2 888 585</p>
+        <p>✉️ <strong>Email:</strong><br> <a href="mailto:info@yalasrilanka.lk" style="color: var(--vintage-accent); text-decoration: none; font-weight: bold;">info@yalasrilanka.lk</a></p>
+    </div>
+
+    <!-- Contact Form -->
+    <div style="flex: 1; min-width: 300px;">
+        {% if messages %}
+            {% for message in messages %}
+                <div style="padding: 10px; margin-bottom: 15px; border-radius: 4px; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST" action="{% url 'safari_app:contact' %}" style="display: flex; flex-direction: column; gap: 1rem;">
+            {% csrf_token %}
+            
+            <div>
+                <label for="name" style="font-weight: bold; color: var(--vintage-heading);">Name</label><br>
+                <input type="text" id="name" name="name" required style="width: 100%; padding: 10px; border: 1px solid var(--vintage-border); box-sizing: border-box; font-family: inherit;">
+            </div>
+
+            <div>
+                <label for="email" style="font-weight: bold; color: var(--vintage-heading);">Email Address</label><br>
+                <input type="email" id="email" name="email" required style="width: 100%; padding: 10px; border: 1px solid var(--vintage-border); box-sizing: border-box; font-family: inherit;">
+            </div>
+
+            <div>
+                <label for="message" style="font-weight: bold; color: var(--vintage-heading);">Message</label><br>
+                <textarea id="message" name="message" rows="5" required style="width: 100%; padding: 10px; border: 1px solid var(--vintage-border); box-sizing: border-box; font-family: inherit; resize: vertical;"></textarea>
+            </div>
+
+            <button type="submit" style="align-self: flex-start; padding: 12px 24px;">Send Message</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
