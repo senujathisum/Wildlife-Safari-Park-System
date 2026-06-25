@@ -57,6 +57,9 @@ class Booking(models.Model):
     # Admin Assigned Fields
     vehicle_number = models.CharField(max_length=20, blank=True, null=True)
     assigned_guide = models.ForeignKey(TourGuide, on_delete=models.SET_NULL, null=True, blank=True, related_name='bookings')
+    
+    # User selected blocks
+    selected_blocks = models.ManyToManyField(HabitatZone, blank=True, related_name='guest_bookings')
 
     def __str__(self):
         return f"Booking for {self.guest_name} on {self.booking_date} ({self.status})"
