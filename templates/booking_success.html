@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Booking Successful - Yala National Park{% endblock %}
+
+{% block content %}
+<div style="text-align: center; margin: 5rem 0 5rem 0;">
+    <div style="display: inline-block; background-color: #dff0d8; border: 2px solid #5cb85c; border-radius: 50%; width: 100px; height: 100px; line-height: 100px; font-size: 50px; color: #2c4c1a; margin-bottom: 2rem;">
+        ✓
+    </div>
+    <h2 style="font-family: 'Brush Script MT', 'Lucida Handwriting', 'Segoe Print', cursive; font-size: 4rem; color: #2c4c1a; margin: 0;">Booking Received!</h2>
+    <p style="font-family: Arial, sans-serif; font-size: 1.4rem; color: #555; margin-top: 20px;">Thank you for choosing Yala National Park.</p>
+    <p style="font-family: Arial, sans-serif; font-size: 1.1rem; color: #777; max-width: 600px; margin: 10px auto;">Your booking request is currently <strong>Pending</strong>. Our staff will review the request and assign a guide and vehicle for your safari. We will contact you at your provided email/phone to confirm the details and finalize payment.</p>
+    
+    <div style="margin-top: 3rem;">
+        <a href="{% url 'safari_app:index' %}" style="display: inline-block; padding: 12px 30px; border-radius: 25px; background-color: #5cb85c; color: white; text-decoration: none; font-size: 1.1rem; transition: background-color 0.3s; margin-right: 1rem;">Return Home</a>
+        <a href="{% url 'safari_app:packages' %}" style="display: inline-block; padding: 12px 30px; border-radius: 25px; background-color: transparent; border: 2px solid #5cb85c; color: #5cb85c; text-decoration: none; font-size: 1.1rem; transition: all 0.3s;">View Packages</a>
+    </div>
+</div>
+{% endblock %}

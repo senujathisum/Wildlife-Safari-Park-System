@@ -1,13 +1,29 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib import messages
 from .models import Booking, TourGuide, HabitatZone, GalleryImage
+from .forms import BookingForm
 
 def index(request):
     gallery_images = GalleryImage.objects.all()
     return render(request, 'index.html', {'gallery_images': gallery_images})
 
-def bookings_list(request):
-    bookings = Booking.objects.all().order_by('booking_date', 'slot_time')
-    return render(request, 'bookings.html', {'bookings': bookings})
+def packages(request):
+    return render(request, 'packages.html')
+
+def book_now(request):
+    initial_tier = request.GET.get('tier', 'Standard')
+    if request.method == 'POST':
+        form = BookingForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('safari_app:booking_success')
+    else:
+        form = BookingForm(initial={'pricing_tier': initial_tier})
+    
+    return render(request, 'book_now.html', {'form': form})
+
+def booking_success(request):
+    return render(request, 'booking_success.html')
 
 def guides_list(request):
     guides = TourGuide.objects.all().prefetch_related('assigned_zones')

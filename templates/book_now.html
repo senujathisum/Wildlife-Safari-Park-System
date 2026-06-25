@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}Book Your Safari - Yala National Park{% endblock %}
+
+{% block content %}
+<div style="text-align: center; margin: 2rem 0 2rem 0;">
+    <h2 style="display: inline-block; font-family: 'Brush Script MT', 'Lucida Handwriting', 'Segoe Print', cursive; font-size: 3.5rem; color: #2c4c1a; margin: 0; padding: 0 2rem 10px 2rem; border-bottom: 4px solid #5cb85c; letter-spacing: 2px;">Book Your Safari</h2>
+    <p style="font-family: Arial, sans-serif; font-size: 1.2rem; color: #555; margin-top: 15px; font-style: italic;">Reserve your adventure with our easy online booking.</p>
+</div>
+
+<div class="premium-card" style="max-width: 800px; margin: 0 auto 3rem auto; padding: 2rem;">
+    <form method="POST" action="{% url 'safari_app:book_now' %}">
+        {% csrf_token %}
+        <div style="display: flex; flex-wrap: wrap; gap: 1.5rem;">
+            <!-- Left Column -->
+            <div style="flex: 1; min-width: 300px;">
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; font-weight: bold; color: #2c4c1a; margin-bottom: 0.5rem;">Full Name</label>
+                    {{ form.guest_name }}
+                    {% if form.guest_name.errors %}
+                        <div style="color: #a94442; font-size: 0.9rem; margin-top: 0.2rem;">{{ form.guest_name.errors }}</div>
+                    {% endif %}
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; font-weight: bold; color: #2c4c1a; margin-bottom: 0.5rem;">Email Address</label>
+                    {{ form.contact_email }}
+                    {% if form.contact_email.errors %}
+                        <div style="color: #a94442; font-size: 0.9rem; margin-top: 0.2rem;">{{ form.contact_email.errors }}</div>
+                    {% endif %}
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; font-weight: bold; color: #2c4c1a; margin-bottom: 0.5rem;">Phone Number</label>
+                    {{ form.contact_phone }}
+                    {% if form.contact_phone.errors %}
+                        <div style="color: #a94442; font-size: 0.9rem; margin-top: 0.2rem;">{{ form.contact_phone.errors }}</div>
+                    {% endif %}
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; font-weight: bold; color: #2c4c1a; margin-bottom: 0.5rem;">Number of Guests</label>
+                    {{ form.number_of_guests }}
+                    {% if form.number_of_guests.errors %}
+                        <div style="color: #a94442; font-size: 0.9rem; margin-top: 0.2rem;">{{ form.number_of_guests.errors }}</div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div style="flex: 1; min-width: 300px;">
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; font-weight: bold; color: #2c4c1a; margin-bottom: 0.5rem;">Safari Package</label>
+                    {{ form.pricing_tier }}
+                    {% if form.pricing_tier.errors %}
+                        <div style="color: #a94442; font-size: 0.9rem; margin-top: 0.2rem;">{{ form.pricing_tier.errors }}</div>
+                    {% endif %}
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; font-weight: bold; color: #2c4c1a; margin-bottom: 0.5rem;">Preferred Date</label>
+                    {{ form.booking_date }}
+                    {% if form.booking_date.errors %}
+                        <div style="color: #a94442; font-size: 0.9rem; margin-top: 0.2rem;">{{ form.booking_date.errors }}</div>
+                    {% endif %}
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; font-weight: bold; color: #2c4c1a; margin-bottom: 0.5rem;">Preferred Time</label>
+                    {{ form.slot_time }}
+                    {% if form.slot_time.errors %}
+                        <div style="color: #a94442; font-size: 0.9rem; margin-top: 0.2rem;">{{ form.slot_time.errors }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem;">
+            <button type="submit" style="padding: 15px 40px; border-radius: 30px; background-color: #2c4c1a; color: white; border: none; font-size: 1.2rem; cursor: pointer; transition: background-color 0.3s; box-shadow: 2px 4px 10px rgba(0,0,0,0.2);">Submit Booking Request</button>
+        </div>
+    </form>
+</div>
+
+<style>
+    .form-control {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-family: Arial, sans-serif;
+        box-sizing: border-box;
+    }
+    .form-control:focus {
+        border-color: #5cb85c;
+        outline: none;
+        box-shadow: 0 0 5px rgba(92, 184, 92, 0.5);
+    }
+</style>
+{% endblock %}

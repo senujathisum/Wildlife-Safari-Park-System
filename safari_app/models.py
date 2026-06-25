@@ -35,15 +35,27 @@ class Booking(models.Model):
         ('Standard', 'Standard'),
         ('Premium', 'Premium'),
     ]
+    STATUS_CHOICES = [
+        ('Pending', 'Pending'),
+        ('Confirmed', 'Confirmed'),
+        ('Completed', 'Completed'),
+        ('Cancelled', 'Cancelled'),
+    ]
     guest_name = models.CharField(max_length=100)
+    contact_email = models.EmailField(default='guest@example.com')
+    contact_phone = models.CharField(max_length=20, default='0000000000')
+    number_of_guests = models.PositiveIntegerField(default=1)
     booking_date = models.DateField()
     slot_time = models.TimeField()
-    vehicle_number = models.CharField(max_length=20)
     pricing_tier = models.CharField(max_length=20, choices=TIER_CHOICES, default='Standard')
-    assigned_guide = models.ForeignKey(TourGuide, on_delete=models.SET_NULL, null=True, related_name='bookings')
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Pending')
+    
+    # Admin Assigned Fields
+    vehicle_number = models.CharField(max_length=20, blank=True, null=True)
+    assigned_guide = models.ForeignKey(TourGuide, on_delete=models.SET_NULL, null=True, blank=True, related_name='bookings')
 
     def __str__(self):
-        return f"Booking for {self.guest_name} on {self.booking_date}"
+        return f"Booking for {self.guest_name} on {self.booking_date} ({self.status})"
 
 class GalleryImage(models.Model):
     title = models.CharField(max_length=100)
