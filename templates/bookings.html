@@ -3,46 +3,5 @@
 {% block title %}Bookings - Yala National Park{% endblock %}
 
 {% block content %}
-<div style="text-align: center; margin: 2rem 0 3rem 0;">
-    <h2 style="display: inline-block; font-family: 'Brush Script MT', 'Lucida Handwriting', 'Segoe Print', cursive; font-size: 3.5rem; color: #2c4c1a; margin: 0; padding: 0 2rem 10px 2rem; border-bottom: 4px solid #5cb85c; letter-spacing: 2px;">Upcoming Safari Bookings</h2>
-    <p style="font-family: Arial, sans-serif; font-size: 1.2rem; color: #555; margin-top: 15px; font-style: italic;">Manage the guest list, assigned guides, and tour slots.</p>
-</div>
 
-<div class="premium-card">
-    <h3 class="premium-header" style="font-size: 1.5rem;">Bookings Roster</h3>
-    <div class="premium-body" style="padding-top: 1rem;">
-        {% if bookings %}
-            <table style="width: 100%; border-collapse: collapse; font-family: Arial, sans-serif; font-size: 1rem;">
-                <thead>
-                    <tr>
-                        <th style="background-color: #5cb85c; color: white; padding: 12px 8px; text-align: left; border: 1px solid #4cae4c;">Guest Name</th>
-                        <th style="background-color: #5cb85c; color: white; padding: 12px 8px; text-align: left; border: 1px solid #4cae4c;">Date</th>
-                        <th style="background-color: #5cb85c; color: white; padding: 12px 8px; text-align: left; border: 1px solid #4cae4c;">Time Slot</th>
-                        <th style="background-color: #5cb85c; color: white; padding: 12px 8px; text-align: left; border: 1px solid #4cae4c;">Vehicle</th>
-                        <th style="background-color: #5cb85c; color: white; padding: 12px 8px; text-align: left; border: 1px solid #4cae4c;">Tier</th>
-                        <th style="background-color: #5cb85c; color: white; padding: 12px 8px; text-align: left; border: 1px solid #4cae4c;">Assigned Guide</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for booking in bookings %}
-                    <tr style="border-bottom: 1px dashed #cccccc; background-color: {% cycle '#ffffff' '#f9fdf9' %};">
-                        <td style="padding: 12px 8px; color: #444; font-weight: bold;">{{ booking.guest_name }}</td>
-                        <td style="padding: 12px 8px; color: #444;">{{ booking.booking_date }}</td>
-                        <td style="padding: 12px 8px; color: #444;">{{ booking.slot_time|time:"H:i" }}</td>
-                        <td style="padding: 12px 8px; color: #444;">{{ booking.vehicle_number }}</td>
-                        <td style="padding: 12px 8px; color: #444;">{{ booking.pricing_tier }}</td>
-                        <td style="padding: 12px 8px; color: #2c4c1a; font-weight: bold;">{{ booking.assigned_guide|default:"<span style='color: #a94442; font-style: italic;'>Pending Assignment</span>" }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            <p style="padding: 12px 8px; text-align: center; color: #666;"><em>No bookings currently scheduled.</em></p>
-        {% endif %}
-
-        <div style="margin-top: 2rem; text-align: right;">
-            <button onclick="alert('Add Booking form coming soon!')" style="padding: 12px 24px; border-radius: 25px; background-color: #5cb85c; color: white; border: none; font-size: 1.1rem; cursor: pointer; transition: background-color 0.3s; box-shadow: 2px 2px 5px rgba(0,0,0,0.1);">Add New Booking</button>
-        </div>
-    </div>
-</div>
 {% endblock %}
