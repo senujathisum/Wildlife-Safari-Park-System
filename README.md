@@ -18,11 +18,12 @@
 
 | Module | Designation | Protocol Function |
 | :--- | :---: | :--- |
-| 🧬 **Habitats** | `Zeta-1` | Bio-tracking of environmental zones and active fauna. |
+| 🧬 **Habitats & Fauna** | `Zeta-1` | Bio-tracking of environmental zones, active fauna, and dynamic emoji mapping. |
 | 🛡️ **Tour Guides** | `Sigma-2` | Personnel management, shift synchronization, and zone allocation. |
-| 🎟️ **Bookings** | `Delta-3` | Encrypted guest scheduling and pricing tier algorithms. |
+| 🎟️ **Bookings** | `Delta-3` | Encrypted guest scheduling, tiered package logic, and habitat block selection. |
 | 📸 **Gallery** | `Gamma-4` | Holographic visual data storage and retrieval. |
-| ⚙️ **Settings** | `Alpha-5` | Mainframe interface for dynamic UI injection (e.g., Logo Override). |
+| ✉️ **Comms (Contact Us)** | `Epsilon-5` | Direct guest-to-admin secure messaging gateway. |
+| ⚙️ **Settings & Dashboard** | `Alpha-6` | Custom built-in mainframe interface for dynamic UI injection and record management. |
 
 ---
 

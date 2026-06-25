@@ -236,9 +236,11 @@
     </div>
 
     <footer>
+        {% if user.is_staff %}
         <div style="margin-bottom: 10px;">
-            <a href="{% url 'safari_app:dashboard_home' %}" style="color: var(--vintage-border); text-decoration: none; font-size: 0.8rem;">Admin Login</a>
+            <a href="{% url 'safari_app:dashboard_home' %}" style="color: var(--vintage-border); text-decoration: none; font-size: 0.8rem;">Admin Dashboard</a>
         </div>
+        {% endif %}
         &copy; 2026 Yala National Park. All rights reserved.
     </footer>
 </body>
