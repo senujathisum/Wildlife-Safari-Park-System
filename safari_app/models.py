@@ -17,6 +17,39 @@ class Animal(models.Model):
     def __str__(self):
         return f"{self.species} - {self.name}" if self.name else self.species
 
+    @property
+    def emoji(self):
+        s = self.species.lower()
+        if 'deer' in s: return '🦌'
+        if 'pangolin' in s: return '🦔'
+        if 'bird' in s or 'fowl' in s or 'hornbill' in s:
+            if 'peafowl' in s or 'peacock' in s: return '🦚'
+            return '🐦'
+        if 'leopard' in s: return '🐆'
+        if 'elephant' in s: return '🐘'
+        if 'bear' in s: return '🐻'
+        if 'crocodile' in s or 'alligator' in s: return '🐊'
+        if 'monkey' in s or 'macaque' in s or 'langur' in s: return '🐒'
+        if 'buffalo' in s: return '🐃'
+        if 'boar' in s or 'pig' in s: return '🐗'
+        if 'lion' in s: return '🦁'
+        if 'tiger' in s: return '🐅'
+        if 'snake' in s or 'python' in s or 'cobra' in s: return '🐍'
+        if 'turtle' in s or 'tortoise' in s: return '🐢'
+        if 'monitor' in s or 'lizard' in s or 'iguana' in s: return '🦎'
+        if 'fox' in s or 'jackal' in s: return '🦊'
+        if 'cat' in s or 'feline' in s: return '🐈'
+        if 'dog' in s or 'canine' in s: return '🐕'
+        if 'rhino' in s: return '🦏'
+        if 'hippo' in s: return '🦛'
+        if 'zebra' in s: return '🦓'
+        if 'giraffe' in s: return '🦒'
+        if 'frog' in s or 'toad' in s: return '🐸'
+        if 'fish' in s: return '🐟'
+        if 'butterfly' in s or 'moth' in s: return '🦋'
+        if 'bug' in s or 'insect' in s or 'beetle' in s: return '🪲'
+        return '🐾'
+
 class TourGuide(models.Model):
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)

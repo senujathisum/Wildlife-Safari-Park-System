@@ -80,8 +80,8 @@
         {% if habitat.animals.all %}
             <div style="display: flex; flex-wrap: wrap; gap: 10px; position: relative; z-index: 1;">
                 {% for animal in habitat.animals.all %}
-                    <span style="background-color: #2c4c1a; color: #fdfaf3; padding: 6px 14px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; box-shadow: 2px 2px 6px rgba(0,0,0,0.15); border: 1px solid #1a3010;">
-                        🐾 {{ animal.species }}
+                    <span style="background-color: transparent; color: #2c4c1a; padding: 6px 14px; border-radius: 20px; font-size: 0.9rem; font-weight: bold; box-shadow: 2px 2px 6px rgba(0,0,0,0.15); border: 2px solid #2c4c1a;">
+                        {{ animal.emoji }} {{ animal.species }}
                     </span>
                 {% endfor %}
             </div>
