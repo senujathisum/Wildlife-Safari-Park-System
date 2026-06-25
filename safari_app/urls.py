@@ -29,5 +29,7 @@ urlpatterns = [
     path('dashboard/gallery/add/', admin_views.GalleryImageCreateView.as_view(), name='dashboard_gallery_add'),
     path('dashboard/gallery/<int:pk>/edit/', admin_views.GalleryImageUpdateView.as_view(), name='dashboard_gallery_edit'),
     path('dashboard/gallery/<int:pk>/delete/', admin_views.GalleryImageDeleteView.as_view(), name='dashboard_gallery_delete'),
+    path('dashboard/messages/', admin_views.ContactMessageListView.as_view(), name='dashboard_messages'),
+    path('dashboard/messages/<int:pk>/delete/', admin_views.ContactMessageDeleteView.as_view(), name='dashboard_message_delete'),
     path('dashboard/settings/', admin_views.site_settings_view, name='dashboard_settings'),
 ]

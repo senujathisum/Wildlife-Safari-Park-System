@@ -1,0 +1,36 @@
+{% extends "admin_base.html" %}
+
+{% block content %}
+<div class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <h1 style="margin: 0; border: none;">Contact Messages</h1>
+    </div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for msg in messages_list %}
+            <tr>
+                <td style="white-space: nowrap;">{{ msg.submitted_at|date:"Y-m-d H:i" }}</td>
+                <td><strong>{{ msg.name }}</strong></td>
+                <td><a href="mailto:{{ msg.email }}">{{ msg.email }}</a></td>
+                <td style="max-width: 400px; overflow: hidden; text-overflow: ellipsis;">{{ msg.message }}</td>
+                <td>
+                    <a href="{% url 'safari_app:dashboard_message_delete' msg.id %}" class="btn btn-danger" style="padding: 4px 8px; font-size: 0.85em;">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="5">No messages found.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

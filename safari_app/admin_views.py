@@ -163,6 +163,18 @@ class GalleryImageDeleteView(StaffRequiredMixin, DeleteView):
     template_name = 'dashboard/generic_confirm_delete.html'
     success_url = reverse_lazy('safari_app:dashboard_gallery')
 
+# --- Contact Messages ---
+class ContactMessageListView(StaffRequiredMixin, ListView):
+    model = ContactMessage
+    template_name = 'dashboard/message_list.html'
+    context_object_name = 'messages_list'
+    ordering = ['-submitted_at']
+
+class ContactMessageDeleteView(StaffRequiredMixin, DeleteView):
+    model = ContactMessage
+    template_name = 'dashboard/generic_confirm_delete.html'
+    success_url = reverse_lazy('safari_app:dashboard_messages')
+
 # --- Site Settings ---
 @user_passes_test(lambda u: u.is_staff, login_url='admin:login')
 def site_settings_view(request):
